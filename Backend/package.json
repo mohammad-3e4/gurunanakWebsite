@@ -21,7 +21,7 @@
   "version": "1.0.0",
   "main": "AcceptFile2.js",
   "author": "Ajay",
-  "type": "module",
+  "type": "commonjs",
   "license": "ISC",
   "description": "",
   "devDependencies": {

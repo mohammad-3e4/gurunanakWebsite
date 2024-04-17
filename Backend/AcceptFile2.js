@@ -1,11 +1,12 @@
-import express from "express";
-import multer from "multer";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
-import cors from "cors";
-import mysql from "mysql2/promise";
-import mysql2 from "mysql2";
-import dotenv from "dotenv";
+const express = require('express');
+const multer = require('multer');
+const { fileURLToPath } = require('url');
+const { dirname, join } = require('path');
+const cors = require('cors');
+const mysql = require('mysql2/promise');
+const mysql2 = require('mysql2');
+const dotenv = require('dotenv');
+
 
 dotenv.config();
 
@@ -16,11 +17,12 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const path = require('path');
+const __filename2 = path.resolve();
+const __dirname2 = path.dirname(__filename2);
 
 // MySQL connection
-const con = await mysql.createConnection({
+const con =  mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
@@ -102,7 +104,7 @@ const con = await mysql.createConnection({
 // const upload1 = multer({ storage: storage1 });
 
 // // Serve uploaded files
-// app.use('/uploads', express.static(join(__dirname, 'uploads')));
+// app.use('/uploads', express.static(join(__dirname2, 'uploads')));
 
 // // POST endpoint to upload a file with description
 // app.post('/uploadfile', upload1.single('file'), async (req, res) => {
@@ -144,7 +146,7 @@ const upload5 = multer({ storage: storage5 });
 // Serve uploaded files
 app.use(
   "/uploads/certificate",
-  express.static(join(__dirname, "uploads", "certificate"))
+  express.static(join(__dirname2, "uploads", "certificate"))
 );
 
 // POST endpoint to upload a file with optional description and date
@@ -214,7 +216,7 @@ const storage6 = multer.diskStorage({
 const upload6 = multer({ storage: storage6 });
 
 // Serve uploaded files
-app.use("/uploads", express.static(join(__dirname, "uploads")));
+app.use("/uploads", express.static(join(__dirname2, "uploads")));
 
 // POST endpoint to upload a file with optional description and date
 app.post("/uploadfile", upload6.single("file"), async (req, res) => {
@@ -288,7 +290,7 @@ const upload2 = multer({ storage: storage2 });
 // Serve uploaded files
 app.use(
   "/uploads/images",
-  express.static(join(__dirname, "uploads", "images"))
+  express.static(join(__dirname2, "uploads", "images"))
 );
 
 // POST endpoint to upload a file with description
@@ -477,7 +479,7 @@ const upload4 = multer({ storage: storage4 });
 // Serve uploaded files
 app.use(
   "/uploads/result",
-  express.static(join(__dirname, "uploads", "result"))
+  express.static(join(__dirname2, "uploads", "result"))
 );
 // POST endpoint to upload a file with optional description and date
 app.post("/uploadresult", upload4.single("file"), async (req, res) => {
@@ -547,7 +549,7 @@ const upload7 = multer({ storage: storage7 });
 // Serve uploaded files
 app.use(
   "/uploads/admissionform",
-  express.static(join(__dirname, "uploads", "admissionform"))
+  express.static(join(__dirname2, "uploads", "admissionform"))
 );
 // POST endpoint to upload a file with optional description and date
 app.post("/uploadform", upload7.single("file"), async (req, res) => {
