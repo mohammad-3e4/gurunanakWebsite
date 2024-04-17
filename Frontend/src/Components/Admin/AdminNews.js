@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminPageLayout from "./AdminPageLayout"
-
+import { baseUrl } from '../../baseUrl';
 
 function DeleteNews() {
     const [files, setFiles] = useState([]);
@@ -14,7 +14,7 @@ function DeleteNews() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/files');
+            const response = await axios.get(`${baseUrl}/files`);
             setFiles(response.data.reverse());
             setLoading(false);
         } catch (error) {
@@ -26,7 +26,7 @@ function DeleteNews() {
 
     const handleDelete = async (news_id) => {
         try{
-             await axios.delete(`http://localhost:5000/delete/${news_id}`);
+             await axios.delete(`${baseUrl}/delete/${news_id}`);
              console.log(`${news_id}`);
         }
         catch(err){

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AdminPageLayout from "./AdminPageLayout"
 
-
+import { baseUrl } from '../../baseUrl';
 export default function FacultySalary() {
   const [formData, setFormData] = useState({
     name: '',
@@ -23,7 +23,7 @@ export default function FacultySalary() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/salary', {
+      const response = await fetch(`${baseUrl}/api/salary`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

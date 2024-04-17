@@ -21,7 +21,7 @@ const __dirname = dirname(__filename);
 const con = await mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "AJAY16VATS",
+    password: "admin@root123",
     database: "mydb",
 });
 

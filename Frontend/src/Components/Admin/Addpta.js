@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AdminPageLayout from './AdminPageLayout';
-
+import { baseUrl } from '../../baseUrl';
 export default function Addpta() {
   const [name, setName] = useState('');
   const [designation, setDesignation] = useState('');
@@ -25,7 +25,7 @@ export default function Addpta() {
 
 
     try {
-      const response = await axios.post('http://localhost:5000/api/addpta', formData, {
+      const response = await axios.post(`${baseUrl}/api/addpta`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

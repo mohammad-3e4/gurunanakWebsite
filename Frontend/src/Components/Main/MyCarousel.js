@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'flowbite-react';
 import axios from 'axios';
-
+import { baseUrl } from '../../baseUrl';
 export default function MyCarousel() {
   const [file, setFile] = useState([]);
 
@@ -11,7 +11,7 @@ export default function MyCarousel() {
 
   const fetchdata = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/carousel');
+      const response = await axios.get(`${baseUrl}/api/carousel`);
       setFile(response.data);
       // console.log(response.data)
     }
@@ -24,7 +24,7 @@ export default function MyCarousel() {
     <div className="h-56 sm:h-64 md:h-80 lg:h-[500px] xl:h-100 2xl:h-svh">
       <Carousel>
         {file.map((item, index) => (
-          <img key={index} src={`http://localhost:5000/uploads/carousel/${item.file_name}`} alt={`Slide  ${index + 1}`} />
+          <img key={index} src={`${baseUrl}/uploads/carousel/${item.file_name}`} alt={`Slide  ${index + 1}`} />
 
         ))}
       </Carousel>

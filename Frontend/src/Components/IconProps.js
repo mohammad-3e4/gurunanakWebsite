@@ -7,21 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function IconsProps() {
 
-    // const [totalStatus, setTotalStatus] = useState(0);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get('http://localhost:5000/api/sum-status');
-    //             setTotalStatus(response.data.totalStatus);
-    //             console.log(response.data.totalStatus)
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, []);
 
     return (
         <ul className="h-[219px]  z-50  fixed top-[40%] left-[86%] 2xl:left-[97%] xl:left-[96%] lg:left-[95%] md:left-[94%] sm:left-[92%] xs:left-[89%] w-full  xl:w-[60%] lg:w-[62%] md:w-[63%] sm:w-[80%]  h-full " >

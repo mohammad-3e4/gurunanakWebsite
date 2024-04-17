@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { baseUrl } from "../../../baseUrl";
 
 export default function Result() {
     const [data, setData] = useState([]);
@@ -9,7 +9,7 @@ export default function Result() {
     }, []);
     const fetchdata = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/result');
+            const response = await axios.get(`${baseUrl}/api/result`);
             // console.log('Response from backend:', response.data.reverse());
             setData(response.data.reverse());
         } catch (error) {
@@ -40,7 +40,7 @@ export default function Result() {
 
                                 <a
                                     className=" bg-orange flex-none  rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-                                    href={`http://localhost:5000/uploads/result/${file.file_name}`} target="_blank" rel="noopener noreferrer">
+                                    href={`${baseUrl}/uploads/result/${file.file_name}`} target="_blank" rel="noopener noreferrer">
                                     Download Now<span aria-hidden="true">&rarr;</span>
                                 </a>
                             </li>

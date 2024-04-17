@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AdminPageLayout from './AdminPageLayout';
-
+import { baseUrl } from '../../baseUrl';
 export default function UploadCarousel() {
     const [file, setFile] = useState(null);
     const [slide, setSlide] = useState('');
@@ -24,7 +24,7 @@ export default function UploadCarousel() {
         formData.append('slide', slide);
         
         try {
-            const response = await axios.post('http://localhost:5000/uploadcarousel', formData, {
+            const response = await axios.post(`${baseUrl}/uploadcarousel`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

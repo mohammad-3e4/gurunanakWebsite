@@ -3,7 +3,7 @@ import { Modal } from "flowbite-react";
 import axios from 'axios';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
-
+import { baseUrl } from '../../baseUrl';
 // import { Link } from 'react-router-dom'
 
 function HomeActivity() {
@@ -19,7 +19,7 @@ function HomeActivity() {
     const fetchData = async (endpoint) => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:5000/${endpoint}`);
+            const response = await axios.get(`${baseUrl}/${endpoint}`);
             setFiles(response.data);
             setLoading(false);
             setButtonsVisible(false); // Hide buttons after one is clicked
@@ -58,15 +58,15 @@ function HomeActivity() {
         setCurrentIndex(nextIndex);
     };
     const buttons = [
-        { show: "none", activity: 'rakhi', name: "Rakhi Making Activity - Pre Primary Students", imageSrc: 'http://localhost:5000/uploads/activity/914.jpeg', alt: 'Rakhi Making Activity - Pre Primary Students' },
-        { activity: 'ind-pre', name: "Independence day Celebration By Pre-Primary", imageSrc: 'http://localhost:5000/uploads/activity/905.jpeg', alt: 'Independence day Celebration By Pre-Primary' },
-        { activity: 'chandrayaan', name: "Chandrayaan-3 Landing Live Streaming", imageSrc: 'http://localhost:5000/uploads/activity/898.jpeg', alt: 'Chandrayaan-3 Landing Live Streaming' },
-        { activity: 'tabacco', name: "Say No To Tabacco :- Webinar", imageSrc: 'http://localhost:5000/uploads/activity/901.jpeg', alt: 'Say No To Tabacco :- Webinar' },
-        { activity: 'swachhta', name: "Swachhta Pakhwada", imageSrc: 'http://localhost:5000/uploads/activity/854.JPG', alt: 'Swachhta Pakhwada' },
-        { activity: 'annual', name: "Annual Function", imageSrc: 'http://localhost:5000/uploads/activity/887.JPG', alt: ' Annual Function' },
-        { activity: 'antidrug', name: "Anti Drug Day", imageSrc: 'http://localhost:5000/uploads/activity/878.JPG', alt: 'Anti Drug Day' },
-        { activity: 'ardas', name: "Ardas Diwas", imageSrc: 'http://localhost:5000/uploads/activity/806.JPG', alt: ' Ardas Diwas' },
-        { activity: 'chart', name: "Chart Making", imageSrc: 'http://localhost:5000/uploads/activity/843.JPG', alt: 'Chart Making' },
+        { show: "none", activity: 'rakhi', name: "Rakhi Making Activity - Pre Primary Students", imageSrc: '${baseUrl}/uploads/activity/914.jpeg', alt: 'Rakhi Making Activity - Pre Primary Students' },
+        { activity: 'ind-pre', name: "Independence day Celebration By Pre-Primary", imageSrc: '${baseUrl}/uploads/activity/905.jpeg', alt: 'Independence day Celebration By Pre-Primary' },
+        { activity: 'chandrayaan', name: "Chandrayaan-3 Landing Live Streaming", imageSrc: '${baseUrl}/uploads/activity/898.jpeg', alt: 'Chandrayaan-3 Landing Live Streaming' },
+        { activity: 'tabacco', name: "Say No To Tabacco :- Webinar", imageSrc: '${baseUrl}/uploads/activity/901.jpeg', alt: 'Say No To Tabacco :- Webinar' },
+        { activity: 'swachhta', name: "Swachhta Pakhwada", imageSrc: '${baseUrl}/uploads/activity/854.JPG', alt: 'Swachhta Pakhwada' },
+        { activity: 'annual', name: "Annual Function", imageSrc: '${baseUrl}/uploads/activity/887.JPG', alt: ' Annual Function' },
+        { activity: 'antidrug', name: "Anti Drug Day", imageSrc: '${baseUrl}/uploads/activity/878.JPG', alt: 'Anti Drug Day' },
+        { activity: 'ardas', name: "Ardas Diwas", imageSrc: '${baseUrl}/uploads/activity/806.JPG', alt: ' Ardas Diwas' },
+        { activity: 'chart', name: "Chart Making", imageSrc: '${baseUrl}/uploads/activity/843.JPG', alt: 'Chart Making' },
     ];
 
     return (
@@ -107,7 +107,7 @@ function HomeActivity() {
                                     <img onClick={() => {
                                         setOpenModal(true);
                                         setSelectedImage(file.Name);
-                                    }} className="object-cover w-full h-full duration-200 rounded-lg hover:skew-y-3" src={`http://localhost:5000/uploads/activity/${file.Name}`} alt={`${file.Name} is not available`} />
+                                    }} className="object-cover w-full h-full duration-200 rounded-lg hover:skew-y-3" src={`${baseUrl}/uploads/activity/${file.Name}`} alt={`${file.Name} is not available`} />
                                 </div>
                             ))}
                         </div>
@@ -118,7 +118,7 @@ function HomeActivity() {
                             {selectedImage && (
                                 <img
                                     className="w-full rounded-lg"
-                                    src={`http://localhost:5000/uploads/activity/${selectedImage}`}
+                                    src={`${baseUrl}/uploads/activity/${selectedImage}`}
                                     alt={selectedImage}
                                 />
                             )}

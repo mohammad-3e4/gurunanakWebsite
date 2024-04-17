@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { baseUrl } from '../../baseUrl';
 function News() {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +12,7 @@ function News() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/files');
+      const response = await axios.get(`${baseUrl}/files`);
       setFiles(response.data.reverse());
       setLoading(false);
     } catch (error) {
@@ -48,7 +48,7 @@ function News() {
 
         <a
           className=" bg-orange flex-none  rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-          href={`http://localhost:5000/uploads/${file.name}`} target="_blank" rel="noopener noreferrer">
+          href={`${baseUrl}/uploads/${file.name}`} target="_blank" rel="noopener noreferrer">
           Download Now<span aria-hidden="true">&rarr;</span>
         </a>
       </li>

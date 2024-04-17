@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AdminPageLayout from './AdminPageLayout';
-
+import { baseUrl } from '../../baseUrl';
 export default function UploadImage() {
     const [file, setFile] = useState(null);
 
@@ -15,7 +15,7 @@ export default function UploadImage() {
         formData.append('file', file); 
 
         try {
-            const response = await axios.post('http://localhost:5000/uploadimage', formData, {
+            const response = await axios.post(`${baseUrl}/uploadimage`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

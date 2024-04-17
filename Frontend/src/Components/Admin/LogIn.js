@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminPage from './AdminPage';
-
+import { baseUrl } from '../../baseUrl';
 export default function LogIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -29,7 +29,7 @@ export default function LogIn() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/login");
+            const response = await axios.get(`${baseUrl}/api/login`);
             console.log(response.data[0]);            
             setData(response.data[0]);
         } catch (error) {

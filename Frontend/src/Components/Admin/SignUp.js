@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { baseUrl } from '../../baseUrl';
 export default function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,7 +17,7 @@ export default function SignUp() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/signup', {
+            const response = await axios.post(`${baseUrl}/signup`, {
                 email: email,
                 password: password
             });

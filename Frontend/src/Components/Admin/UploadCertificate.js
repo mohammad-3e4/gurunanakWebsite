@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AdminPageLayout from './AdminPageLayout';
-
+import { baseUrl } from '../../baseUrl';
 export default function UploadCertifiacte() {
   const [file, setFile] = useState(null);
   const [description, setDescription] = useState('');
@@ -28,7 +28,7 @@ export default function UploadCertifiacte() {
 
 
     try {
-      const response = await axios.post('http://localhost:5000/uploadcertificate', formData, {
+      const response = await axios.post(`${baseUrl}/uploadcertificate`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

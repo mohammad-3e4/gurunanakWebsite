@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminPageLayout from "./AdminPageLayout"
-
-
+import { baseUrl } from '../../baseUrl';
 export default function AdminVideo() {
     const [data, setData] = useState([]);
 
@@ -12,7 +11,7 @@ export default function AdminVideo() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/showvideo');
+            const response = await axios.get(`${baseUrl}/api/showvideo`);
             console.log('Response from backend:', response.data[0]);
             setData(response.data[0]);
         } catch (error) {
@@ -23,7 +22,7 @@ export default function AdminVideo() {
 
     const handledelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/showvideo/${id}`);
+            await axios.delete(`${baseUrl}/api/showvideo/${id}`);
         }
         catch(err){
             console.log(err);

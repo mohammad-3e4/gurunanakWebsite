@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AdminPageLayout from './AdminPageLayout';
-
+import { baseUrl } from '../../baseUrl';
 export default function UploadActivity() {
     const [file, setFile] = useState(null);
     const [activity, setActivity] = useState('');
@@ -21,7 +21,7 @@ export default function UploadActivity() {
         formData.append('activity', activity);
 
         try {
-            const response = await axios.post('http://localhost:5000/uploadactivity', formData, {
+            const response = await axios.post(`${baseUrl}/uploadactivity`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

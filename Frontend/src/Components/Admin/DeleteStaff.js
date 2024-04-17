@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import AdminPageLayout from "./AdminPageLayout";
 
-
+import { baseUrl } from "../../baseUrl";
 
 export default function DeleteStaff() {
     const [facultyData, setFacultyData] = useState([]);
@@ -12,7 +12,7 @@ export default function DeleteStaff() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/joining');
+                const response = await axios.get(`${baseUrl}/api/joining`);
                 setFacultyData(response.data);
             } catch (error) {
                 console.error(error);
@@ -25,7 +25,7 @@ export default function DeleteStaff() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/salary');
+                const response = await axios.get(`${baseUrl}/api/salary`);
                 setFacultyData1(response.data);
             } catch (error) {
                 console.error(error);
@@ -41,7 +41,7 @@ export default function DeleteStaff() {
 
     const handledelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/joining/${id}`)
+            await axios.delete(`${baseUrl}/api/joining/${id}`)
             // console.log(`${id}`);
 
         }
@@ -103,7 +103,7 @@ export default function DeleteStaff() {
 
     const handledelete1 = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/salary/${id}`)
+            await axios.delete(`${baseUrl}/api/salary/${id}`)
             // console.log(`${id}`);
 
         }

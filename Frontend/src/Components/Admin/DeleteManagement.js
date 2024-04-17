@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import AdminPageLayout from './AdminPageLayout';
 import { Button } from "flowbite-react";
 
-
+import { baseUrl } from "../../baseUrl";
 export default function DeleteManagement() {
     const [data, setData] = useState([]);
 
@@ -16,7 +16,7 @@ export default function DeleteManagement() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/managingcommitee");
+            const response = await axios.get(`${baseUrl}/api/managingcommitee`);
             setData(response.data);
             // console.log(response.data)
 
@@ -29,7 +29,7 @@ export default function DeleteManagement() {
 
     const handlesmc = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/managingcommitee/${id}`)
+            await axios.delete(`${baseUrl}/api/managingcommitee/${id}`)
             console.log(`${id}`);
 
         }
@@ -45,7 +45,7 @@ export default function DeleteManagement() {
 
     const fetchPta = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/pta");
+            const response = await axios.get(`${baseUrl}/api/pta`);
             setPta(response.data);
             // console.log(response.data)
 
@@ -57,7 +57,7 @@ export default function DeleteManagement() {
 
     const handlepta = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/pta/${id}`)
+            await axios.delete(`${baseUrl}/api/pta/${id}`)
             // console.log(`${id}`);
 
         }

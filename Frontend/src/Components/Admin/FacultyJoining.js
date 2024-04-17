@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AdminPageLayout from './AdminPageLayout';
-
+import { baseUrl } from '../../baseUrl';
 export default function FacultyJoining() {
   const [formData, setFormData] = useState({
     name: '',
@@ -23,7 +23,7 @@ export default function FacultyJoining() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/joining', {
+      const response = await fetch(`${baseUrl}/api/joining`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

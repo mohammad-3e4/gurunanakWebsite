@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button, Modal } from "flowbite-react";
 import axios from 'axios';
 // import { Link } from 'react-router-dom'
-
+import { baseUrl } from '../../../baseUrl';
 function OurActivity() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [openModal, setOpenModal] = useState(false);
@@ -19,7 +19,7 @@ function OurActivity() {
     const fetchData = async (endpoint) => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:5000/${endpoint}`);
+            const response = await axios.get(`${baseUrl}/${endpoint}`);
             setFiles(response.data);
             setLoading(false);
             setButtonsVisible(false);
@@ -51,28 +51,28 @@ function OurActivity() {
     };
 
     const buttons = [
-        { show: "none", activity: 'rakhi', name: "Rakhi Making Activity - Pre Primary Students", imageSrc: 'http://localhost:5000/uploads/activity/914.jpeg', alt: 'Rakhi Making Activity - Pre Primary Students' },
-        { activity: 'ind-pre', name: "Independence day Celebration By Pre-Primary", imageSrc: 'http://localhost:5000/uploads/activity/905.jpeg', alt: 'Independence day Celebration By Pre-Primary' },
-        { activity: 'chandrayaan', name: "Chandrayaan-3 Landing Live Streaming", imageSrc: 'http://localhost:5000/uploads/activity/898.jpeg', alt: 'Chandrayaan-3 Landing Live Streaming' },
-        { activity: 'tabacco', name: "Say No To Tabacco :- Webinar", imageSrc: 'http://localhost:5000/uploads/activity/901.jpeg', alt: 'Say No To Tabacco :- Webinar' },
-        { activity: 'swachhta', name: "Swachhta Pakhwada", imageSrc: 'http://localhost:5000/uploads/activity/854.JPG', alt: 'Swachhta Pakhwada' },
-        { activity: 'annual', name: "Annual Function", imageSrc: 'http://localhost:5000/uploads/activity/887.JPG', alt: ' Annual Function' },
-        { activity: 'antidrug', name: "Anti Drug Day", imageSrc: 'http://localhost:5000/uploads/activity/878.JPG', alt: 'Anti Drug Day' },
-        { activity: 'ardas', name: "Ardas Diwas", imageSrc: 'http://localhost:5000/uploads/activity/806.JPG', alt: ' Ardas Diwas' },
-        { activity: 'chart', name: "Chart Making", imageSrc: 'http://localhost:5000/uploads/activity/843.JPG', alt: 'Chart Making' },
-        { activity: 'healthy', name: "Healthy Tiffinn", imageSrc: 'http://localhost:5000/uploads/activity/847.JPG', alt: 'Healthy Tiffinn' },
-        { activity: 'honour', name: "Honour of Ms.Bakshi", imageSrc: 'http://localhost:5000/uploads/activity/856.JPG', alt: 'Honour of Ms.Bakshi' },
-        { activity: 'ind-2015', name: "Independence Day 2015", imageSrc: 'http://localhost:5000/uploads/activity/821.JPG', alt: 'Independence Day 2015' },
-        { activity: 'ind-2016', name: "Independence Day 2016", imageSrc: 'http://localhost:5000/uploads/activity/869.JPG', alt: 'Independence Day 2016' },
-        { activity: 'inauguration', name: "Inauguration of NSQF", imageSrc: 'http://localhost:5000/uploads/activity/829.JPG', alt: 'Inauguration of NSQF' },
-        { activity: 'interschool', name: "Interschool Competitions", imageSrc: 'http://localhost:5000/uploads/activity/814.JPG', alt: 'Interschool Competitions' },
-        { activity: 'nagar', name: "Nagar Kirtan", imageSrc: 'http://localhost:5000/uploads/activity/871.JPG', alt: 'Nagar Kirtan' },
-        { activity: 'management', name: "New management Committee", imageSrc: 'http://localhost:5000/uploads/activity/874.JPG', alt: 'New management Committee' },
-        { activity: 'plantation', name: "Plantation in School", imageSrc: 'http://localhost:5000/uploads/activity/885.JPG', alt: ' Plantation in School' },
-        { activity: 'poster', name: "Poster Making Competitions", imageSrc: 'http://localhost:5000/uploads/activity/881.JPG', alt: 'Poster Making Competitions' },
-        { activity: 'sports', name: "Sports Day", imageSrc: 'http://localhost:5000/uploads/activity/836.JPG', alt: ' Sports Day' },
-        { activity: 'teej', name: "Teej Celebrations", imageSrc: 'http://localhost:5000/uploads/activity/850.JPG', alt: ' Teej Celebrations' },
-        { activity: 'theatre', name: "Theatre Workshop For Teachers", imageSrc: 'http://localhost:5000/uploads/activity/861.JPG', alt: 'Theatre Workshop For Teachers' },
+        { show: "none", activity: 'rakhi', name: "Rakhi Making Activity - Pre Primary Students", imageSrc: `${baseUrl}/uploads/activity/914.jpeg`, alt: 'Rakhi Making Activity - Pre Primary Students' },
+        { activity: 'ind-pre', name: "Independence day Celebration By Pre-Primary", imageSrc: `${baseUrl}/uploads/activity/905.jpeg`, alt: 'Independence day Celebration By Pre-Primary' },
+        { activity: 'chandrayaan', name: "Chandrayaan-3 Landing Live Streaming", imageSrc: `${baseUrl}/uploads/activity/898.jpeg`, alt: 'Chandrayaan-3 Landing Live Streaming' },
+        { activity: 'tabacco', name: "Say No To Tabacco :- Webinar", imageSrc: `${baseUrl}/uploads/activity/901.jpeg`, alt: 'Say No To Tabacco :- Webinar' },
+        { activity: 'swachhta', name: "Swachhta Pakhwada", imageSrc: `${baseUrl}/uploads/activity/854.JPG`, alt: 'Swachhta Pakhwada' },
+        { activity: 'annual', name: "Annual Function", imageSrc: `${baseUrl}/uploads/activity/887.JPG`, alt: ' Annual Function' },
+        { activity: 'antidrug', name: "Anti Drug Day", imageSrc: `${baseUrl}/uploads/activity/878.JPG`, alt: 'Anti Drug Day' },
+        { activity: 'ardas', name: "Ardas Diwas", imageSrc: `${baseUrl}/uploads/activity/806.JPG`, alt: ' Ardas Diwas' },
+        { activity: 'chart', name: "Chart Making", imageSrc: `${baseUrl}/uploads/activity/843.JPG`, alt: 'Chart Making' },
+        { activity: 'healthy', name: "Healthy Tiffinn", imageSrc: `${baseUrl}/uploads/activity/847.JPG`, alt: 'Healthy Tiffinn' },
+        { activity: 'honour', name: "Honour of Ms.Bakshi", imageSrc: `${baseUrl}/uploads/activity/856.JPG`, alt: 'Honour of Ms.Bakshi' },
+        { activity: 'ind-2015', name: "Independence Day 2015", imageSrc: `${baseUrl}/uploads/activity/821.JPG`, alt: 'Independence Day 2015' },
+        { activity: 'ind-2016', name: "Independence Day 2016", imageSrc: `${baseUrl}/uploads/activity/869.JPG`, alt: 'Independence Day 2016' },
+        { activity: 'inauguration', name: "Inauguration of NSQF", imageSrc: `${baseUrl}/uploads/activity/829.JPG`, alt: 'Inauguration of NSQF' },
+        { activity: 'interschool', name: "Interschool Competitions", imageSrc: `${baseUrl}/uploads/activity/814.JPG`, alt: 'Interschool Competitions' },
+        { activity: 'nagar', name: "Nagar Kirtan", imageSrc: `${baseUrl}/uploads/activity/871.JPG`, alt: 'Nagar Kirtan' },
+        { activity: 'management', name: "New management Committee", imageSrc: `${baseUrl}/uploads/activity/874.JPG`, alt: 'New management Committee' },
+        { activity: 'plantation', name: "Plantation in School", imageSrc: `${baseUrl}/uploads/activity/885.JPG`, alt: ' Plantation in School' },
+        { activity: 'poster', name: "Poster Making Competitions", imageSrc: `${baseUrl}/uploads/activity/881.JPG`, alt: 'Poster Making Competitions' },
+        { activity: 'sports', name: "Sports Day", imageSrc: `${baseUrl}/uploads/activity/836.JPG`, alt: ' Sports Day' },
+        { activity: 'teej', name: "Teej Celebrations", imageSrc: `${baseUrl}/uploads/activity/850.JPG`, alt: ' Teej Celebrations' },
+        { activity: 'theatre', name: "Theatre Workshop For Teachers", imageSrc: `${baseUrl}/uploads/activity/861.JPG`, alt: 'Theatre Workshop For Teachers' },
     ];
 
     return (
@@ -112,7 +112,7 @@ function OurActivity() {
                                     <img onClick={() => {
                                         setOpenModal(true);
                                         setSelectedImage(file.Name);
-                                    }} className="object-cover w-full h-full duration-200 rounded-lg hover:skew-y-3" src={`http://localhost:5000/uploads/activity/${file.Name}`} alt={`${file.Name} is not available`} />
+                                    }} className="object-cover w-full h-full duration-200 rounded-lg hover:skew-y-3" src={`${baseUrl}/uploads/activity/${file.Name}`} alt={`${file.Name} is not available`} />
                                 </div>
                             ))}
                         </div>
@@ -123,7 +123,7 @@ function OurActivity() {
                             {selectedImage && (
                                 <img
                                     className="w-full rounded-lg"
-                                    src={`http://localhost:5000/uploads/activity/${selectedImage}`}
+                                    src={`${baseUrl}/uploads/activity/${selectedImage}`}
                                     alt={selectedImage}
                                 />
 

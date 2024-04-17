@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { baseUrl } from "../../../baseUrl";
 export default function Management() {
   const [data, setData] = useState([]);
 
@@ -13,7 +13,7 @@ export default function Management() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/managingcommitee");
+      const response = await axios.get(`${baseUrl}/api/managingcommitee`);
       setData(response.data);
       console.log(response.data)
 
@@ -30,7 +30,7 @@ export default function Management() {
 
   const fetchPta = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/pta");
+      const response = await axios.get(`${baseUrl}/api/pta`);
       setPta(response.data);
       console.log(response.data)
 

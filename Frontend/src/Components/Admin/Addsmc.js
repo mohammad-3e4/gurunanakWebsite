@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AdminPageLayout from './AdminPageLayout';
-
+import { baseUrl } from '../../baseUrl';
 export default function Addpta() {
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
@@ -28,7 +28,7 @@ export default function Addpta() {
 
 
         try {
-            const response = await axios.post('http://localhost:5000/api/addsmc', formData, {
+            const response = await axios.post(`${baseUrl}/api/addsmc`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

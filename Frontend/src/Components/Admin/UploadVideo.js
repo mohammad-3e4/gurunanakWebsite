@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AdminPageLayout from './AdminPageLayout';
 import { Link } from 'react-router-dom';
-
+import { baseUrl } from '../../baseUrl';
 export default function UploadVideo() {
   const [formData, setFormData] = useState({
     videolink: '',
@@ -19,7 +19,7 @@ export default function UploadVideo() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/Video', {
+      const response = await fetch(`${baseUrl}/Video`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

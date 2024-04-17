@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { baseUrl } from '../../baseUrl';
 export default function AddNotification() {
     const [formData, setFormData] = useState({
         title: '',
@@ -17,7 +17,7 @@ export default function AddNotification() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/addnotification', {
+            const response = await fetch(`${baseUrl}/addnotification`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

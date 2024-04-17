@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AdminPageLayout from './AdminPageLayout';
-
+import { baseUrl } from '../../baseUrl';
 export default function UploadForm() {
   const [file, setFile] = useState(null);
   const [description, setDescription] = useState('');
@@ -28,7 +28,7 @@ export default function UploadForm() {
 
 
     try {
-      const response = await axios.post('http://localhost:5000/uploadform', formData, {
+      const response = await axios.post(`${baseUrl}/uploadform`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

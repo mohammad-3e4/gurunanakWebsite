@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from "flowbite-react";
 import axios from 'axios';
-
+import { baseUrl } from '../../baseUrl';
 function Gallery() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [openModal, setOpenModal] = useState(false);
@@ -16,7 +16,7 @@ function Gallery() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/images');
+            const response = await axios.get(`${baseUrl}/images`);
             setFiles(response.data.reverse());
             setLoading(false);
         } catch (error) {
@@ -62,7 +62,7 @@ function Gallery() {
                                     setCurrentIndex(index);
                                 }}
                                 className="h-full w-full duration-200 rounded-lg hover:skew-y-3"
-                                src={`http://localhost:5000/uploads/images/${file.Name}`}
+                                src={`${baseUrl}/uploads/images/${file.Name}`}
                                 alt={`${file.Name} is not available`}
                             />
                         </div>
@@ -76,7 +76,7 @@ function Gallery() {
                     {selectedImage && (
                         <img
                             className="w-full  rounded-lg"
-                            src={`http://localhost:5000/uploads/images/${selectedImage}`}
+                            src={`${baseUrl}/uploads/images/${selectedImage}`}
                             alt={selectedImage}
                         />
                     )}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AdminPageLayout from './AdminPageLayout';
+import { baseUrl } from '../../baseUrl';
 
 export default function Addhighlight() {
     const [content, setContent] = useState("");
@@ -15,7 +16,7 @@ export default function Addhighlight() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/addhighlight', {
+            const response = await axios.post(`${baseUrl}/addhighlight`, {
                 content: content,
             });
             console.log(response.data);

@@ -1,7 +1,7 @@
 import React from 'react';
 import  { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { baseUrl } from '../../baseUrl';
 export default function Highlight() {
 
     const [highlight, setHighlight] = useState([]);
@@ -14,7 +14,7 @@ export default function Highlight() {
     
       const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/highlight');
+          const response = await axios.get(`${baseUrl}/api/highlight`);
           setHighlight(response.data[0].reverse());
           // console.log(response.data[0].reverse());
           setLoading(false);

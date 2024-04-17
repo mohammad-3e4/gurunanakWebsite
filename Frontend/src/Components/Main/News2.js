@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
-
+import { baseUrl } from '../../baseUrl';
 
 export default function News2() {
 
@@ -28,7 +28,7 @@ export default function News2() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/files');
+      const response = await axios.get(`${baseUrl}/files`);
       setFiles(response.data.reverse());
       setLoading(false);
     } catch (error) {
