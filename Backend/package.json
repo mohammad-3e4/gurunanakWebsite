@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "aos": "^2.3.4",
+    "axios": "^1.6.7",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "express-fileupload": "^1.4.3",
+    "formidable": "^3.5.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.1",
+    "nodemailer": "^6.9.9"
+  },
+  "scripts": {
+    "dev": "nodemon AcceptFile2.js",
+    "start": "node"
+  },
+  "name": "practice",
+  "version": "1.0.0",
+  "main": "AcceptFile2.js",
+  "author": "Ajay",
+  "type": "module",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
