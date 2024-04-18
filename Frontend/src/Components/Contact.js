@@ -15,6 +15,8 @@ export default function Contact() {
     const phoneRegex = /^\d{10}$/;
     setIsPhoneNumberValid(phoneRegex.test(newPhoneNumber));
   };
+
+  
   return (
     <>
       <div className="relative  overflow-hidden p-8 sm:p-8 lg:p-20   contact-img">

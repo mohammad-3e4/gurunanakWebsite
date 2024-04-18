@@ -73,7 +73,7 @@ export default function Mnav() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  console.log(mobileMenuOpen);
+
   return (
     <>
       <div className="fixed z-50 w-full">
