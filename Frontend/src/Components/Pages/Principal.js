@@ -33,8 +33,8 @@ export default function Principal() {
                         <div className="rounded-2xl bg-indigo-300 bg-opacity-20 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
                             <div className="mx-auto max-w-xs px-8">
                                 <img
-                                    src="http://gnkschool.info/userfiles/image/Principalimg.jpeg"
-                                    alt="Product screenshot"
+                                    src="/uploads/staff/principal.jpeg"
+                                    alt="principal"
                                     className="h-full w-full rounded-xl shadow"
                                 />
                             </div>

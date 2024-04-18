@@ -43,7 +43,7 @@ export default function OurCertificate() {
 
                                 <a
                                     className=" bg-orange flex-none  rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-                                    href={`${baseUrl}/uploads/certificate/${file.file_name}`} target="_blank" rel="noopener noreferrer">
+                                    href={`/uploads/certificate/${file.file_name}`} target="_blank" rel="noopener noreferrer">
                                     Download Now<span aria-hidden="true">&rarr;</span>
                                 </a>
                             </li>

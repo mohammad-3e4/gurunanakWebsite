@@ -80,11 +80,13 @@ export default function Mnav() {
         {/* *******************************************Header******************************** */}
         <header className="shadow px-0 w-full  bg-orange   py-2 md:py-4 lg:py-4">
           <div className="w-full  container mx-auto px-4 md:px-6 lg:px-8 flex items-center  ">
-            <img
-              className="h-14 md:h-12 lg:h-16 mr-2 "
-              src="./images/school_logo.png"
-              alt="Logo"
-            />
+            <Link to="/" className="mr-2 ">
+              <img
+                className="h-14 md:h-12 lg:h-16 "
+                src="./images/school_logo.png"
+                alt="Logo"
+              />
+            </Link>
             <div className="flex justify-between items-center w-full">
               <div className="w-full  md:w-[60%] flex items-center mr-1 ">
                 <h1 className=" pt-3 mb-2 text-[12px] xs:text-[14px] sm:text-[15px] md:text-xl lg:text-3xl font-bold tracking-tight text-white">

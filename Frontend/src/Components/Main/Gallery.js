@@ -62,7 +62,7 @@ function Gallery() {
                                     setCurrentIndex(index);
                                 }}
                                 className="h-full w-full duration-200 rounded-lg hover:skew-y-3"
-                                src={`${baseUrl}/uploads/images/${file.Name}`}
+                                src={`/uploads/images/${file.Name}`}
                                 alt={`${file.Name} is not available`}
                             />
                         </div>
@@ -76,7 +76,7 @@ function Gallery() {
                     {selectedImage && (
                         <img
                             className="w-full  rounded-lg"
-                            src={`${baseUrl}/uploads/images/${selectedImage}`}
+                            src={`/uploads/images/${selectedImage}`}
                             alt={selectedImage}
                         />
                     )}

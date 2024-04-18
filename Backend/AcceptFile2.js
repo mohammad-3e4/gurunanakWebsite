@@ -21,14 +21,14 @@ const path = require('path');
 const __filename2 = path.resolve();
 const __dirname2 = path.dirname(__filename2);
 
-// MySQL connection
-console.log();
-const con =  mysql.createConnection({
+
+const con =  mysql2.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 });
+
 
 // **********************************************************Notification***************************************************
 
@@ -37,7 +37,7 @@ const con =  mysql.createConnection({
 //     const content = req.body.content;
 
 //     try {
-//         const result = await con.query(
+//         const result = await con.promise().query(
 //             "INSERT INTO notification (title, content) VALUES (?, ?)",
 //             [title, content]
 //         );
@@ -53,7 +53,7 @@ const con =  mysql.createConnection({
 
 // app.get("/api/notification", async (req, res) => {
 //     try {
-//         const rows = await con.query('SELECT * FROM notification');
+//         const rows = await con.promise().query('SELECT * FROM notification');
 //         // console.log("Fetched videos:", rows);
 //         res.send(rows);
 //     } catch (error) {
@@ -66,7 +66,7 @@ const con =  mysql.createConnection({
 
 // app.get('/api/sum-status', async (req, res) => {
 //     try {
-//         const [rows] = await con.query('SELECT SUM(status) AS total_status FROM notification');
+//         const [rows] = await con.promise().query('SELECT SUM(status) AS total_status FROM notification');
 //         const totalStatus = rows[0].total_status;
 //         console.log("sum:", totalStatus);
 //         res.json({ totalStatus });
@@ -122,7 +122,7 @@ const con =  mysql.createConnection({
 //         console.log(description);
 //         console.log(date);
 
-//         await con.execute(`INSERT INTO pdf_files (name, description,date) VALUES (?, ?, ? )`, [uploadedFile.filename, description, date]);
+//         await con.promise().query(`INSERT INTO pdf_files (name, description,date) VALUES (?, ?, ? )`, [uploadedFile.filename, description, date]);
 
 //         console.log("File saved to database.");
 //         return res.status(200).send('File uploaded and saved to database.');
@@ -135,7 +135,7 @@ const con =  mysql.createConnection({
 // **********************************************************Certificate***************************************************
 const storage5 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/certificate");
+    cb(null, path.join(__dirname, 'frontend', 'public', 'uploads','certificate'));
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -168,14 +168,14 @@ app.post("/uploadcertificate", upload5.single("file"), async (req, res) => {
 
     // Insert into the database, handle file and no file cases separately
     if (uploadedFile) {
-      await con.execute(
+      await con.promise().query(
         `INSERT INTO  certificate (file_name, description, date) VALUES (?, ?, ?)`,
         [uploadedFile.filename, description, date]
       );
       console.log("File saved to database.");
       return res.status(200).send("File uploaded and saved to database.");
     } else {
-      await con.execute(
+      await con.promise().query(
         `INSERT INTO pdf_files (description, date) VALUES (?, ?)`,
         [description, date]
       );
@@ -192,8 +192,8 @@ app.post("/uploadcertificate", upload5.single("file"), async (req, res) => {
 
 app.get("/certificate", async (req, res) => {
   try {
-    // const [rows, fields] = await con.execute('SELECT * FROM pdf_files');
-    const [rows, fields] = await con.execute(
+    // const [rows, fields] = await con.promise().query('SELECT * FROM pdf_files');
+    const [rows, fields] = await con.promise().query(
       "SELECT *, DATE_FORMAT(date, '%m/%d/%Y') AS date FROM certificate"
     );
 
@@ -207,7 +207,7 @@ app.get("/certificate", async (req, res) => {
 // **********************************************************News & Updates***************************************************
 const storage6 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads");
+    cb(null, path.join(__dirname, 'frontend', 'public', 'uploads'));
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -237,14 +237,14 @@ app.post("/uploadfile", upload6.single("file"), async (req, res) => {
 
     // Insert into the database, handle file and no file cases separately
     if (uploadedFile) {
-      await con.execute(
+      await con.promise().query(
         `INSERT INTO news (name, description, date) VALUES (?, ?, ?)`,
         [uploadedFile.filename, description, date]
       );
       console.log("File saved to database.");
       return res.status(200).send("File uploaded and saved to database.");
     } else {
-      await con.execute(`INSERT INTO news (description, date) VALUES (?, ?)`, [
+      await con.promise().query(`INSERT INTO news (description, date) VALUES (?, ?)`, [
         description,
         date,
       ]);
@@ -261,8 +261,8 @@ app.post("/uploadfile", upload6.single("file"), async (req, res) => {
 
 app.get("/files", async (req, res) => {
   try {
-    // const [rows, fields] = await con.execute('SELECT * FROM pdf_files');
-    const [rows, fields] = await con.execute(
+    // const [rows, fields] = await con.promise().query('SELECT * FROM pdf_files');
+    const [rows, fields] = await con.promise().query(
       "SELECT *, DATE_FORMAT(date, '%m/%d/%Y') AS date FROM news"
     );
 
@@ -279,10 +279,11 @@ app.get("/files", async (req, res) => {
 // Multer storage configuration
 const storage2 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/images/");
+
+    cb(null, path.join(__dirname, 'frontend', 'public', 'uploads', 'images'));
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, file.originalname)
   },
 });
 
@@ -305,7 +306,7 @@ app.post("/uploadimage", upload2.single("file"), async (req, res) => {
 
     console.log(uploadedFile.filename);
 
-    await con.execute(`INSERT INTO images (Name) VALUES (?)`, [
+    await con.promise().query(`INSERT INTO images (Name) VALUES (?)`, [
       uploadedFile.filename,
     ]);
 
@@ -319,7 +320,7 @@ app.post("/uploadimage", upload2.single("file"), async (req, res) => {
 
 app.get("/images", async (req, res) => {
   try {
-    const [rows, fields] = await con.execute("SELECT * FROM images");
+    const [rows, fields] = await con.promise().query("SELECT * FROM images");
     res.json(rows);
   } catch (error) {
     console.error(error);
@@ -331,7 +332,7 @@ app.get("/images", async (req, res) => {
 
 const storage3 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/activity/");
+    cb(null, path.join(__dirname, 'frontend', 'public', 'uploads', 'activity'));
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname);
@@ -354,7 +355,7 @@ app.post("/uploadactivity", upload3.single("file"), async (req, res) => {
     console.log("Uploaded File:", uploadedFile.filename);
     console.log("Activity Name:", activityName);
 
-    await con.execute(`INSERT INTO activity (Name, Activity) VALUES (?, ?)`, [
+    await con.promise().query(`INSERT INTO activity (Name, Activity) VALUES (?, ?)`, [
       uploadedFile.filename,
       activityName,
     ]);
@@ -387,7 +388,7 @@ app.post("/video", async (req, res) => {
   const videotitle = req.body.videotitle;
 
   try {
-    const result = await con.query(
+    const result = await con.promise().query(
       "INSERT INTO videos (videolink, videotitle) VALUES (?, ?)",
       [videolink, videotitle]
     );
@@ -401,7 +402,7 @@ app.post("/video", async (req, res) => {
 
 app.get("/api/showvideo", async (req, res) => {
   try {
-    const rows = await con.query("SELECT * FROM videos");
+    const rows = await con.promise().query("SELECT * FROM videos");
     // console.log("Fetched videos:", rows);
     res.send(rows);
   } catch (error) {
@@ -417,7 +418,7 @@ app.post("/signup", async (req, res) => {
   const password = req.body.password;
 
   try {
-    const result = await con.query(
+    const result = await con.promise().query(
       "INSERT INTO admintable (email, password) VALUES (?, ?)",
       [email, password]
     );
@@ -431,7 +432,7 @@ app.post("/signup", async (req, res) => {
 
 app.get("/api/login", async (req, res) => {
   try {
-    const rows = await con.query("SELECT * FROM admintable");
+    const rows = await con.promise().query("SELECT * FROM admintable");
     res.send(rows);
   } catch (error) {
     console.error("Error fetching data from admintable:", error);
@@ -444,7 +445,7 @@ app.get("/api/login", async (req, res) => {
 app.post("/addhighlight", async (req, res) => {
   const content = req.body.content;
   try {
-    const result = await con.query(
+    const result = await con.promise().query(
       "UPDATE highlight SET content = ? WHERE id = ?",
       [content, 1]
     );
@@ -457,7 +458,7 @@ app.post("/addhighlight", async (req, res) => {
 
 app.get("/api/highlight", async (req, res) => {
   try {
-    const rows = await con.query("SELECT * FROM highlight");
+    const rows = await con.promise().query("SELECT * FROM highlight");
     res.send(rows);
     // console.log(rows)
   } catch (error) {
@@ -468,7 +469,7 @@ app.get("/api/highlight", async (req, res) => {
 // ****************************************************************** Result ******************************************************
 const storage4 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/result");
+    cb(null, path.join(__dirname, 'frontend', 'public', 'uploads', 'result'));
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -500,14 +501,14 @@ app.post("/uploadresult", upload4.single("file"), async (req, res) => {
 
     // Insert into the database, handle file and no file cases separately
     if (uploadedFile) {
-      await con.execute(
+      await con.promise().query(
         `INSERT INTO result (file_name, description, date) VALUES (?, ?, ?)`,
         [uploadedFile.filename, description, date]
       );
       console.log("File saved to database.");
       return res.status(200).send("File uploaded and saved to database.");
     } else {
-      await con.execute(
+      await con.promise().query(
         `INSERT INTO pdf_files (description, date) VALUES (?, ?)`,
         [description, date]
       );
@@ -524,7 +525,7 @@ app.post("/uploadresult", upload4.single("file"), async (req, res) => {
 
 app.get("/api/result", async (req, res) => {
   try {
-    const [rows, fields] = await con.execute(
+    const [rows, fields] = await con.promise().query(
       "SELECT *, DATE_FORMAT(date, '%m/%d/%Y') AS date FROM result"
     );
     res.json(rows);
@@ -570,14 +571,14 @@ app.post("/uploadform", upload7.single("file"), async (req, res) => {
 
     // Insert into the database, handle file and no file cases separately
     if (uploadedFile) {
-      await con.execute(
+      await con.promise().query(
         `INSERT INTO admissionform (file_name, description, date) VALUES (?, ?, ?)`,
         [uploadedFile.filename, description, date]
       );
       console.log("File saved to database.");
       return res.status(200).send("File uploaded and saved to database.");
     } else {
-      await con.execute(
+      await con.promise().query(
         `INSERT INTO admissionform (description, date) VALUES (?, ?)`,
         [description, date]
       );
@@ -594,7 +595,7 @@ app.post("/uploadform", upload7.single("file"), async (req, res) => {
 
 app.get("/api/form", async (req, res) => {
   try {
-    const [rows, fields] = await con.execute(
+    const [rows, fields] = await con.promise().query(
       "SELECT *, DATE_FORMAT(date, '%m/%d/%Y') AS date FROM admissionform"
     );
     res.json(rows);
@@ -613,7 +614,7 @@ app.post("/api/addsmc", async (req, res) => {
   const designation = req.body.designation;
 
   try {
-    const result = await con.query(
+    const result = await con.promise().query(
       "INSERT INTO managing_commitee (name, address,designation) VALUES (?, ?, ?)",
       [name, address, designation]
     );
@@ -627,7 +628,7 @@ app.post("/api/addsmc", async (req, res) => {
 
 app.get("/api/managingcommitee", async (req, res) => {
   try {
-    const [rows, fields] = await con.execute("SELECT * FROM managing_commitee");
+    const [rows, fields] = await con.promise().query("SELECT * FROM managing_commitee");
     res.json(rows);
     // console.log(rows);
   } catch (error) {
@@ -654,7 +655,7 @@ app.post("/api/addpta", async (req, res) => {
   const designation = req.body.designation;
 
   try {
-    const result = await con.query(
+    const result = await con.promise().query(
       "INSERT INTO pta (name,designation) VALUES (?, ?)",
       [name, designation]
     );
@@ -668,7 +669,7 @@ app.post("/api/addpta", async (req, res) => {
 
 app.get("/api/pta", async (req, res) => {
   try {
-    const [rows, fields] = await con.execute("SELECT * FROM pta");
+    const [rows, fields] = await con.promise().query("SELECT * FROM pta");
     res.json(rows);
     // console.log(rows);
   } catch (error) {
@@ -704,14 +705,14 @@ app.post("/uploadcarousel", upload7.single("file"), async (req, res) => {
     console.log(slide);
 
     // Check if slide already exists in the database
-    const [existingSlide] = await con.execute(
+    const [existingSlide] = await con.promise().query(
       `SELECT * FROM carousel WHERE slide = ?`,
       [slide]
     );
 
     if (existingSlide.length > 0) {
       // If slide exists, update the file_name for that slide
-      await con.execute(`UPDATE carousel SET file_name = ? WHERE slide = ?`, [
+      await con.promise().query(`UPDATE carousel SET file_name = ? WHERE slide = ?`, [
         uploadedFile.filename,
         slide,
       ]);
@@ -721,7 +722,7 @@ app.post("/uploadcarousel", upload7.single("file"), async (req, res) => {
         .send("File uploaded and file name updated in database.");
     } else {
       // If slide does not exist, insert a new record
-      await con.execute(
+      await con.promise().query(
         `INSERT INTO carousel (slide, file_name) VALUES (?, ?)`,
         [slide, uploadedFile.filename]
       );
@@ -736,7 +737,7 @@ app.post("/uploadcarousel", upload7.single("file"), async (req, res) => {
 
 app.get("/api/carousel", async (req, res) => {
   try {
-    const [rows, fields] = await con.execute("SELECT *  FROM carousel");
+    const [rows, fields] = await con.promise().query("SELECT *  FROM carousel");
     res.json(rows);
     // console.log(rows);
   } catch (error) {
@@ -824,7 +825,7 @@ app.post("/api/salary", async (req, res) => {
     req.body;
 
   try {
-    const result = await con.query(
+    const result = await con.promise().query(
       "INSERT INTO faculty_salary (name,designation,qualification,experience,pay_scale,category) VALUES (?, ?,?,?,?,?)",
       [name, designation, qualification, experience, pay_scale, category]
     );
@@ -838,7 +839,7 @@ app.post("/api/salary", async (req, res) => {
 
 app.get("/api/salary", async (req, res) => {
   try {
-    const [rows, fields] = await con.execute("SELECT *  FROM faculty_salary");
+    const [rows, fields] = await con.promise().query("SELECT *  FROM faculty_salary");
     res.json(rows);
     // console.log(rows);
   } catch (error) {
@@ -849,7 +850,7 @@ app.get("/api/salary", async (req, res) => {
 
 app.delete("/api/salary/:id", async (req, res) => {
   const { id } = req.params;
-  await con.query(`Delete FROM faculty_salary WHERE id=${id}`);
+  await con.promise().query(`Delete FROM faculty_salary WHERE id=${id}`);
   if (err) {
     console.log(err);
   }
@@ -870,7 +871,7 @@ app.post("/api/joining", async (req, res) => {
   } = req.body;
 
   try {
-    const result = await con.query(
+    const result = await con.promise().query(
       "INSERT INTO faculty_joining (name,designation,qualification,date_of_birth,date_of_appointment,date_of_retirement,category) VALUES (?, ?,?,?,?,?,?)",
       [
         name,
@@ -892,7 +893,7 @@ app.post("/api/joining", async (req, res) => {
 
 app.get("/api/joining", async (req, res) => {
   try {
-    const [rows, fields] = await con.execute(
+    const [rows, fields] = await con.promise().query(
       "SELECT *, DATE_FORMAT(date_of_birth, '%m/%d/%Y') AS date_of_birth, DATE_FORMAT(date_of_appointment, '%m/%d/%Y') AS date_of_appointment,DATE_FORMAT(date_of_retirement, '%m/%d/%Y') AS date_of_retirement FROM faculty_joining"
     );
     res.json(rows);
@@ -905,7 +906,7 @@ app.get("/api/joining", async (req, res) => {
 
 app.delete("/api/joining/:id", async (req, res) => {
   const { id } = req.params;
-  await con.query(`Delete FROM faculty_joining WHERE id=${id}`);
+  await con.promise().query(`Delete FROM faculty_joining WHERE id=${id}`);
   if (err) {
     console.log(err);
   }

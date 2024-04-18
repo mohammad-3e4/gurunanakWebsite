@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AdminPageLayout from "./AdminPageLayout"
-
+import { baseUrl } from "../../baseUrl";
 
 
 export default function AdminAdmission() {
@@ -11,7 +11,7 @@ export default function AdminAdmission() {
     }, []);
     const fetchdata = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/form');
+            const response = await axios.get(`${baseUrl}/api/form`);
             // console.log('Response from backend:', response.data.reverse());
             setData(response.data.reverse());
         } catch (error) {
@@ -21,7 +21,7 @@ export default function AdminAdmission() {
     };
     const handleDelete = async (news_id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/form/${news_id}`);
+            await axios.delete(`${baseUrl}/api/form/${news_id}`);
             console.log(`${news_id}`);
         }
         catch (err) {

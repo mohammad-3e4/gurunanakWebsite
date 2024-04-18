@@ -58,15 +58,15 @@ function HomeActivity() {
         setCurrentIndex(nextIndex);
     };
     const buttons = [
-        { show: "none", activity: 'rakhi', name: "Rakhi Making Activity - Pre Primary Students", imageSrc: '${baseUrl}/uploads/activity/914.jpeg', alt: 'Rakhi Making Activity - Pre Primary Students' },
-        { activity: 'ind-pre', name: "Independence day Celebration By Pre-Primary", imageSrc: '${baseUrl}/uploads/activity/905.jpeg', alt: 'Independence day Celebration By Pre-Primary' },
-        { activity: 'chandrayaan', name: "Chandrayaan-3 Landing Live Streaming", imageSrc: '${baseUrl}/uploads/activity/898.jpeg', alt: 'Chandrayaan-3 Landing Live Streaming' },
-        { activity: 'tabacco', name: "Say No To Tabacco :- Webinar", imageSrc: '${baseUrl}/uploads/activity/901.jpeg', alt: 'Say No To Tabacco :- Webinar' },
-        { activity: 'swachhta', name: "Swachhta Pakhwada", imageSrc: '${baseUrl}/uploads/activity/854.JPG', alt: 'Swachhta Pakhwada' },
-        { activity: 'annual', name: "Annual Function", imageSrc: '${baseUrl}/uploads/activity/887.JPG', alt: ' Annual Function' },
-        { activity: 'antidrug', name: "Anti Drug Day", imageSrc: '${baseUrl}/uploads/activity/878.JPG', alt: 'Anti Drug Day' },
-        { activity: 'ardas', name: "Ardas Diwas", imageSrc: '${baseUrl}/uploads/activity/806.JPG', alt: ' Ardas Diwas' },
-        { activity: 'chart', name: "Chart Making", imageSrc: '${baseUrl}/uploads/activity/843.JPG', alt: 'Chart Making' },
+        { show: "none", activity: 'rakhi', name: "Rakhi Making Activity - Pre Primary Students", imageSrc: '/uploads/activity/914.jpeg', alt: 'Rakhi Making Activity - Pre Primary Students' },
+        { activity: 'ind-pre', name: "Independence day Celebration By Pre-Primary", imageSrc: '/uploads/activity/905.jpeg', alt: 'Independence day Celebration By Pre-Primary' },
+        { activity: 'chandrayaan', name: "Chandrayaan-3 Landing Live Streaming", imageSrc: '/uploads/activity/898.jpeg', alt: 'Chandrayaan-3 Landing Live Streaming' },
+        { activity: 'tabacco', name: "Say No To Tabacco :- Webinar", imageSrc: '/uploads/activity/901.jpeg', alt: 'Say No To Tabacco :- Webinar' },
+        { activity: 'swachhta', name: "Swachhta Pakhwada", imageSrc: '/uploads/activity/854.JPG', alt: 'Swachhta Pakhwada' },
+        { activity: 'annual', name: "Annual Function", imageSrc: '/uploads/activity/887.JPG', alt: ' Annual Function' },
+        { activity: 'antidrug', name: "Anti Drug Day", imageSrc: '/uploads/activity/878.JPG', alt: 'Anti Drug Day' },
+        { activity: 'ardas', name: "Ardas Diwas", imageSrc: '/uploads/activity/806.JPG', alt: ' Ardas Diwas' },
+        { activity: 'chart', name: "Chart Making", imageSrc: '/uploads/activity/843.JPG', alt: 'Chart Making' },
     ];
 
     return (
