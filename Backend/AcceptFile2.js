@@ -22,6 +22,7 @@ const __filename2 = path.resolve();
 const __dirname2 = path.dirname(__filename2);
 
 // MySQL connection
+console.log();
 const con =  mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -366,18 +367,18 @@ app.post("/uploadactivity", upload3.single("file"), async (req, res) => {
   }
 });
 
-app.get("/:activity", async (req, res) => {
-  const { activity } = req.params;
-  try {
-    const [rows, fields] = await con.execute(
-      `SELECT * FROM activity WHERE activity = "${activity}";`
-    );
-    res.json(rows);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error fetching files from database.");
-  }
-});
+// app.get("/:activity", async (req, res) => {
+//   const { activity } = req.params;
+//   try {
+//     const [rows, fields] = con.query(
+//       `SELECT * FROM activity WHERE activity = "${activity}";`
+//     );
+//     res.json(rows);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error fetching files from database.");
+//   }
+// });
 
 // **********************************************************Video Uploding***************************************************
 
@@ -910,3 +911,7 @@ app.delete("/api/joining/:id", async (req, res) => {
   }
   // console.log(`${id}`);
 });
+
+app.get('/homer', (req, res)=>{
+  res.send('Hello world')
+})
