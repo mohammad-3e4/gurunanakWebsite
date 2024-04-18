@@ -368,18 +368,18 @@ app.post("/uploadactivity", upload3.single("file"), async (req, res) => {
   }
 });
 
-// app.get("/:activity", async (req, res) => {
-//   const { activity } = req.params;
-//   try {
-//     const [rows, fields] = con.query(
-//       `SELECT * FROM activity WHERE activity = "${activity}";`
-//     );
-//     res.json(rows);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Error fetching files from database.");
-//   }
-// });
+app.get("/:activity", async (req, res) => {
+  const { activity } = req.params;
+  try {
+    const [rows, fields] = await con.promise().query(
+      `SELECT * FROM activity WHERE activity = "${activity}";`
+    );
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching files from database.");
+  }
+});
 
 // **********************************************************Video Uploding***************************************************
 
