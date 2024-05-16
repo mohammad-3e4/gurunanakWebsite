@@ -118,7 +118,7 @@ function HomeActivity() {
                             {selectedImage && (
                                 <img
                                     className="w-full rounded-lg"
-                                    src={`${baseUrl}/uploads/activity/${selectedImage}`}
+                                    src={`/uploads/activity/${selectedImage}`}
                                     alt={selectedImage}
                                 />
                             )}
